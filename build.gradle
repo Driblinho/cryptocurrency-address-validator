@@ -1,0 +1,21 @@
+plugins {
+    id 'java'
+}
+
+group 'io.github.driblinho'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile ('org.web3j:core:5.0.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.6.2'
+    testCompile group: 'junit', name: 'junit', version: '4.13'
+}
+
+test {
+    useJUnitPlatform()
+}
