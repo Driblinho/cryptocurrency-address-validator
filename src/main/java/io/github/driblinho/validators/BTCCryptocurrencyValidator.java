@@ -26,7 +26,10 @@ public class BTCCryptocurrencyValidator extends CryptocurrencyValidator implemen
             }
             return false;
         }
-        if (address.length()-1 > 33) return false;
+
+        boolean isInvalidAddress = !Pattern.compile("^[13][a-km-zA-HJ-NP-Z1-9]{25,34}$").matcher(address).matches();
+
+        if (isInvalidAddress) return false;
 
         int endIndex = address.length()-9;
         byte[] input = Crypto.base58ToRawBytes(address);
