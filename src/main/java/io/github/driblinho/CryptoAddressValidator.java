@@ -7,7 +7,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
-public class CryptoAddressValidator implements CryptoAddressValidatorInterface {
+public class CryptoAddressValidator {
 
     ///https://github.com/ognus/wallet-address-validator
     //https://github.com/SamouraiDev/bech32
@@ -56,7 +56,6 @@ public class CryptoAddressValidator implements CryptoAddressValidatorInterface {
         this.address = address;
     }
 
-    @Override
     public Optional<String> detectCryptocurrency() {
         if (this.cryptocurrencySymbols != null && !this.cryptocurrencySymbols.isEmpty()) {
             return Optional.of(this.cryptocurrencySymbols.get(0));
@@ -64,13 +63,11 @@ public class CryptoAddressValidator implements CryptoAddressValidatorInterface {
         return Optional.empty();
     }
 
-    @Override
     public Optional<List<String>> detectCryptocurrencyAll() {
         if (this.detectCryptocurrency().isPresent()) return Optional.of(this.cryptocurrencySymbols);
         return Optional.empty();
     }
 
-    @Override
     public void validate() {
         this.cryptocurrencySymbols = new ArrayList<>();
         for (CryptocurrencyValidator validator : validators) {
@@ -80,14 +77,13 @@ public class CryptoAddressValidator implements CryptoAddressValidatorInterface {
         }
     }
 
-    @Override
+
     public boolean isValid() {
         return this.cryptocurrencySymbols!=null && !this.cryptocurrencySymbols.isEmpty();
     }
 
-    @Override
     public boolean isValid(String symbol) {
-        return false;
+        return isValid() && this.detectCryptocurrencyAll().get().contains(symbol);
     }
 
 }

@@ -92,5 +92,12 @@ public class CryptoAddressValidatorTest {
         );
     }
 
+    @Test
+    void shouldValidateBySymbol() {
+        CryptoAddressValidator validator = new CryptoAddressValidator("1FzWLkAahHooV3kzTgyx6qsswXJ6sCXkSR");
+        validator.validate();
+        validator.isValid("BTC");
+    }
+
 
 }
