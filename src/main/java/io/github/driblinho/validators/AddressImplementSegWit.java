@@ -1,5 +1,5 @@
 package io.github.driblinho.validators;
 
-public interface CanBeSegWit {
+public interface AddressImplementSegWit {
     boolean isSegWit();
 }

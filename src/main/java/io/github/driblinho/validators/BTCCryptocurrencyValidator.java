@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class BTCCryptocurrencyValidator extends CryptocurrencyValidator implements CanBeSegWit {
+public class BTCCryptocurrencyValidator extends CryptocurrencyValidator implements AddressImplementSegWit {
 
     public BTCCryptocurrencyValidator(String address) {
         super(address);
