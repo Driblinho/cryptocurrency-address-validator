@@ -10,8 +10,11 @@ public class TRXCryptocurrencyValidator extends CryptocurrencyValidator {
         super(address);
     }
 
+    public TRXCryptocurrencyValidator() {
+    }
+
     @Override
-    boolean isValid() {
+    public boolean isValid() {
 
         if(!Pattern.compile("^T[1-9A-HJ-NP-Za-km-z]{33}").matcher(address).matches()) return false;
 

@@ -12,10 +12,13 @@ public class BTCCryptocurrencyValidator extends CryptocurrencyValidator implemen
         super(address);
     }
 
+    public BTCCryptocurrencyValidator() {
+    }
+
     private boolean segWit;
 
     @Override
-    boolean isValid() {
+    public boolean isValid() {
 
         if(address.startsWith("bc1")) {
             final Pattern pattern = Pattern.compile("\\bbc(0([ac-hj-np-z02-9]{39}|[ac-hj-np-z02-9]{59})|1[ac-hj-np-z02-9]{8,87})\\b", Pattern.MULTILINE);

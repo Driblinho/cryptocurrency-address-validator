@@ -11,8 +11,11 @@ public class ETHCryptocurrencyValidator extends CryptocurrencyValidator {
         super(address);
     }
 
+    public ETHCryptocurrencyValidator() {
+    }
+
     @Override
-    boolean isValid() {
+    public boolean isValid() {
         Pattern pattern = Pattern.compile("^0x[a-fA-F0-9]{40}$");
 
         Matcher matcher = pattern.matcher(address);
