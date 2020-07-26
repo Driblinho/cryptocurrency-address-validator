@@ -1,5 +1,6 @@
 plugins {
     id 'java-library'
+    id 'maven'
 }
 
 group 'io.github.driblinho'
@@ -17,6 +18,28 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.13'
 }
 
+task sourcesJar(type: Jar, dependsOn: classes) {
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives sourcesJar
+}
+
 test {
     useJUnitPlatform()
+}
+
+install {
+    repositories.mavenInstaller {
+        pom.project {
+            licenses {
+                license {
+                    name 'MIT License'
+                    url 'https://opensource.org/licenses/MIT'
+                    distribution 'repo'
+                }
+            }
+        }
+    }
 }
