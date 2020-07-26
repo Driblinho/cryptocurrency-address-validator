@@ -6,16 +6,19 @@ import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class BTCCryptocurrencyValidator extends CryptocurrencyValidator implements CanBeSegWit {
+public class BTCCryptocurrencyValidator extends CryptocurrencyValidator implements AddressImplementSegWit {
 
     public BTCCryptocurrencyValidator(String address) {
         super(address);
     }
 
+    public BTCCryptocurrencyValidator() {
+    }
+
     private boolean segWit;
 
     @Override
-    boolean isValid() {
+    public boolean isValid() {
 
         if(address.startsWith("bc1")) {
             final Pattern pattern = Pattern.compile("\\bbc(0([ac-hj-np-z02-9]{39}|[ac-hj-np-z02-9]{59})|1[ac-hj-np-z02-9]{8,87})\\b", Pattern.MULTILINE);
@@ -26,7 +29,10 @@ public class BTCCryptocurrencyValidator extends CryptocurrencyValidator implemen
             }
             return false;
         }
-        if (address.length()-1 > 33) return false;
+
+        boolean isInvalidAddress = !Pattern.compile("^[13][a-km-zA-HJ-NP-Z1-9]{25,34}$").matcher(address).matches();
+
+        if (isInvalidAddress) return false;
 
         int endIndex = address.length()-9;
         byte[] input = Crypto.base58ToRawBytes(address);

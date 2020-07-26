@@ -53,4 +53,18 @@ public class Crypto {
         }
     }
 
+    public static String toHex(byte[] bytes) {
+        StringBuilder result = new StringBuilder();
+        for (byte aByte : bytes) {
+            int decimal = (int) aByte & 0xff;               // bytes widen to int, need mask, prevent sign extension
+            // get last 8 bits
+            String hex = Integer.toHexString(decimal);
+            if (hex.length() % 2 == 1) {                    // if half hex, pad with zero, e.g \t
+                hex = "0" + hex;
+            }
+            result.append(hex);
+        }
+        return result.toString();
+    }
+
 }
